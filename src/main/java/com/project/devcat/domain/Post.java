@@ -1,6 +1,7 @@
 package com.project.devcat.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Getter
 @Entity
 public class Post extends Timestamped {
@@ -30,7 +32,7 @@ public class Post extends Timestamped {
     private int commentCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "memeber_id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

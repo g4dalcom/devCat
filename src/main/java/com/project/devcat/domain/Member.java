@@ -32,10 +32,10 @@ public class Member extends Timestamped {
     @Enumerated
     private MemberRoleEnum role;
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Post> postList;
-
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Comment> commentList;
+//    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<Post> postList;
+//
+//    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<Comment> commentList;
 
 }
