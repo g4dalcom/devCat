@@ -25,37 +25,17 @@ public class PostService {
     private final PostImageRepository postImageRepository;
     private final MemberRepository memberRepository;
 
-    /**
-     * 게시글 작성하기
-     */
-    @Transactional
-    public ResponseEntity<PostDto.Response> createPost(PostDto.Request request, List<MultipartFile> multipartFileList) {
-        Post post = request.toEntity();
+
+    /* 게시글 등록 */
+    public ResponseEntity<PostDto.Response> createPost(PostDto.Request request) {
+        Post post = Post.builder()
+                .title(request.getTitle())
+                .content(request.getContent())
+                .category(request.getCategory())
+                .build();
+
         postRepository.save(post);
-        return ResponseEntity.ok().body(PostDto.Response.builder()
-                .id(post.getId())
-//                .member_id(post.getMember().getId())
-                .title(post.getTitle())
-                .content(post.getContent())
-                .category(post.getCategory())
-                .views(post.getViews())
-                .commentCount(post.getCommentCount())
-                .createdAt(post.getCreatedAt())
-                .modifiedAt(post.getModifiedAt())
-                .build());
-    }
-
-    @Transactional
-    public ResponseEntity<List<PostDto.Response>> readPost() {
-        List<Post> postList = postRepository.findAll();
-
-        List<PostDto.Response> postData = new ArrayList<>();
-
-        for (Post posts : postList) {
-            PostDto.Response response = new PostDto.Response(posts);
-            postData.add(response);
-        }
-        return ResponseEntity.ok().body(postData);
+        return ResponseEntity.ok().body(new PostDto.Response());
     }
 
     /**

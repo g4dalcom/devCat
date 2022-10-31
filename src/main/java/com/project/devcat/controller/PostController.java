@@ -1,35 +1,56 @@
 package com.project.devcat.controller;
 
+import com.project.devcat.domain.Post;
 import com.project.devcat.dto.PostDto;
+import com.project.devcat.repository.PostRepository;
 import com.project.devcat.service.PostService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
-
+@Slf4j
 @RequiredArgsConstructor
-@RestController
+@Controller
 public class PostController {
 
     private final PostService postService;
+    private final PostRepository postRepository;
 
-    @PostMapping("/posts")
-    public ResponseEntity<PostDto.Response> createPost(@RequestPart(value = "data") PostDto.Request request,
-                                                       @RequestPart(value = "image", required = false) List<MultipartFile> multipartFileList) {
 
-        return postService.createPost(request, multipartFileList);
-    }
-
+    /* 전체 조회 */
     @GetMapping("/posts")
-    public ResponseEntity<List<PostDto.Response>> readPost() {
+    public String readPosts(Model model, String keyword, @PageableDefault(page = 0, size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
+        model.addAttribute("posts", postRepository.findByTitleIgnoreCaseContains(pageable, keyword));
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("sortProperty", pageable.getSort().toString().contains("DESC") ? "desc" : "asc");
 
-        return postService.readPost();
+        return "index";
     }
 
+    /* 게시글 등록 */
+    @PostMapping("/posts/")
+    public String createPost(@ModelAttribute PostDto.Request request) {
+        postService.createPost(request);
+        log.info("request={}", request);
+
+        return "redirect:/";
+    }
+
+
+    @PostConstruct
+    public void init() {
+        postRepository.save(new Post(2L, "제목", "콘텐츠", "카테고리", 1));
+        postRepository.save(new Post(3L, "제목", "콘텐츠", "카테고리", 1));
+        postRepository.save(new Post(4L, "제목", "콘텐츠", "카테고리", 1));
+    }
 }

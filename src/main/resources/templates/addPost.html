@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/index.css">
-    <title>메인페이지</title>
+    <title>일상토크 작성하기</title>
 </head>
 <body>
   <div class="navigation">
@@ -16,25 +16,13 @@
     </div>
     <div class="loginBtn"><a href="/" th:href="@{/}">로그인</a></div>
   </div>
-  <table class="table">
-    <thead>
-    <tr>
-      <th>번호</th>
-      <th>분류</th>
-      <th>제목</th>
-      <th>날짜</th>
-      <th>조회수</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="post : ${posts}">
-      <td th:text="${post.id}">번호</td>
-      <td th:text="${post.category}">분류</td>
-      <td th:text="${post.title}">제목</td>
-      <td th:text="${post.createdAt}">날짜</td>
-      <td th:text="${post.views}">조회수</td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="postForm">
+    <form action="/posts" method="post">
+      <input name="title" type="text">
+      <input name="category" type="text">
+      <textarea name="content"></textarea>
+      <button type="submit">등록</button>
+    </form>
+  </div>
 </body>
 </html>

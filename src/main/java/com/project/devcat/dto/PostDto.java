@@ -21,15 +21,14 @@ public class PostDto {
 //        private List<PostImage> imageList;
 
         public Post toEntity() {
-            Post post = Post.builder()
+            return Post.builder()
                     .title(title)
                     .content(content)
                     .category(category)
-                    .views(0)
-                    .commentCount(0)
+//                    .views(0)
+//                    .commentCount(0)
 //                    .imageList(imageList)
                     .build();
-            return post;
         }
     }
 
@@ -54,11 +53,11 @@ public class PostDto {
             this.title = post.getTitle();
             this.content = post.getContent();
             this.category = post.getCategory();
-            this.imageList = post.getImageList();
+//            this.imageList = post.getImageList();
             this.createdAt = post.getCreatedAt();
             this.modifiedAt = post.getModifiedAt();
-            this.views = post.getViews();
-            this.commentCount = post.getCommentCount();
+//            this.views = post..getViews();
+//            this.commentCount = post.getCommentCount();
 //            this.member_id = post.getMember().getId();
         }
     }

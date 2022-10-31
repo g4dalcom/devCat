@@ -25,7 +25,7 @@ public class Place {
     private String content;
 
     @Column(nullable = false)
-    private String category;
+    private String theme;
 
     @Column(nullable = false)
     private String address;
