@@ -1,29 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="fragments.html :: head">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/index.css">
     <title>메인페이지</title>
 </head>
 <body>
-  <div class="navigation">
-    <div class="logo"><a href="/" th:href="@{/}">로고</a></div>
-    <div class="menu">
-      <div class="talk"><a href="/" th:href="@{/}">일상토크</a></div>
-      <div class="shopping"><a href="/" th:href="@{/}">쇼핑</a></div>
-      <div class="travel"><a href="/" th:href="@{/}">여행</a></div>
-      <div class="chatting"><a href="/" th:href="@{/}">관리자채팅</a></div>
-    </div>
-    <div class="loginBtn"><a href="/" th:href="@{/}">로그인</a></div>
-  </div>
-  <table class="table">
+  <div th:replace="fragments.html :: main-nav"></div>
+  <table class="table table-hover">
     <thead>
     <tr>
-      <th>번호</th>
-      <th>분류</th>
-      <th>제목</th>
-      <th>날짜</th>
-      <th>조회수</th>
+      <th scope="col">번호</th>
+      <th scope="col">분류</th>
+      <th scope="col">제목</th>
+      <th scope="col">날짜</th>
+      <th scope="col">조회수</th>
     </tr>
     </thead>
     <tbody>
@@ -36,5 +27,6 @@
     </tr>
     </tbody>
   </table>
+  <div th:replace="fragments.html :: footer"></div>
 </body>
 </html>

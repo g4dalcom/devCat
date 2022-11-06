@@ -30,7 +30,7 @@ public class HomeController {
     public String createPost(Model model) {
         model.addAttribute(new PostDto.Request());
 
-        return "addPost";
+        return "createPost";
     }
 
 }
