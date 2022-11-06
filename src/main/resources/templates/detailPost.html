@@ -12,7 +12,7 @@
 <div class="row justify-content-center">
   <form id="form" class="needs-validation col-sm-6" action="#"
         th:action="@{'/posts/' + *{id}}" th:object="${post}" method="post" novalidate>
-    <input id="_method" type="hidden" name="_method" value="put"/>
+<!--    <input id="_method" type="hidden" name="_method" value="put"/>-->
 <!--    <input type="hidden" th:field="*{username}"/>-->
 <!--    <div class="form-group">-->
 <!--      <p id="username">작성자: <span th:text="*{username}"></span></p>-->
@@ -51,7 +51,9 @@
     <div class="form-group">
       <a th:href="@{/}" class="btn btn-secondary float-left" >목록으로</a>
       <button class="btn btn-primary float-right ml-1" type="submit" aria-describedby="submitHelp">수정하기</button>
-      <button id="btn-delete" class="btn btn-danger float-right ml-1" type="button" onclick="changeMethodToDelete()">삭제하기</button>
+      <form th:action="@{'/posts/' + ${post.id}}" th:method="delete">
+          <button id="btn-delete" class="btn btn-danger float-right ml-1" type="submit">삭제하기</button>
+      </form>
     </div>
   </form>
 

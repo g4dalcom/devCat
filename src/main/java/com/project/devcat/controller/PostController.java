@@ -46,6 +46,14 @@ public class PostController {
         return "redirect:/";
     }
 
+    /* 게시글 삭제 */
+    @DeleteMapping("/posts/{post_id}")
+    public String deletePost(@PathVariable Long post_id) {
+        postRepository.deleteById(post_id);
+        log.info("delete={}", post_id);
+
+        return "redirect:/";
+    }
 
     @PostConstruct
     public void init() {

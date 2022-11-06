@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="css/index.css">
     <title>메인페이지</title>
 </head>
+<style>
+  a {
+    text-decoration: none;
+    color: black;
+  }
+</style>
 <body>
   <div th:replace="fragments.html :: main-nav"></div>
   <table class="table table-hover">
@@ -21,7 +27,7 @@
     <tr th:each="post : ${posts}">
       <td th:text="${post.id}">번호</td>
       <td th:text="${post.category}">분류</td>
-      <td th:text="${post.title}">제목</td>
+      <td><a href="detailPost.html" th:href="@{/posts/{post_id}(post_id=${post.id})}" th:text="${post.title}"></a></td>
       <td th:text="${post.createdAt}">날짜</td>
       <td th:text="${post.views}">조회수</td>
     </tr>
