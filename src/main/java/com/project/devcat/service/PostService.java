@@ -32,6 +32,7 @@ public class PostService {
                 .title(request.getTitle())
                 .content(request.getContent())
                 .category(request.getCategory())
+                .views(request.getViews())
                 .build();
 
         postRepository.save(post);

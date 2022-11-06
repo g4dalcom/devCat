@@ -28,8 +28,7 @@ public class HomeController {
 
     @GetMapping("/posts/post")
     public String createPost(Model model) {
-        model.addAttribute(new PostDto.Request());
-
+        model.addAttribute("post", new PostDto.Request());
         return "createPost";
     }
 

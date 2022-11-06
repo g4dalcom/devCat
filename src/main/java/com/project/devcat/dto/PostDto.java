@@ -18,6 +18,8 @@ public class PostDto {
         private String title;
         private String content;
         private String category;
+
+        private int views;
 //        private List<PostImage> imageList;
 
         public Post toEntity() {
@@ -25,7 +27,7 @@ public class PostDto {
                     .title(title)
                     .content(content)
                     .category(category)
-//                    .views(0)
+                    .views(0)
 //                    .commentCount(0)
 //                    .imageList(imageList)
                     .build();
@@ -41,6 +43,9 @@ public class PostDto {
         private String title;
         private String content;
         private String category;
+
+        private String nickname;
+
         private List<PostImage> imageList;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
@@ -48,15 +53,16 @@ public class PostDto {
         private int commentCount;
 //        private Long member_id;
 
-        public Response(Post post) {
+        public Response(Post post, Member member) {
             this.id = post.getId();
             this.title = post.getTitle();
             this.content = post.getContent();
             this.category = post.getCategory();
+            this.nickname = member.getNickname();
 //            this.imageList = post.getImageList();
             this.createdAt = post.getCreatedAt();
             this.modifiedAt = post.getModifiedAt();
-//            this.views = post..getViews();
+            this.views = post.getViews();
 //            this.commentCount = post.getCommentCount();
 //            this.member_id = post.getMember().getId();
         }

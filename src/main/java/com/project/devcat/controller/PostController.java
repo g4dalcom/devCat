@@ -38,7 +38,7 @@ public class PostController {
     }
 
     /* 게시글 등록 */
-    @PostMapping("/posts/")
+    @PostMapping("/posts/post")
     public String createPost(@ModelAttribute PostDto.Request request) {
         postService.createPost(request);
         log.info("request={}", request);
