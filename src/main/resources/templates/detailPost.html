@@ -28,32 +28,36 @@
     <div id="title-group" class="form-group">
       <label for="title">제목</label>
       <input id="title" type="text" th:field="*{title}" class="form-control"
-             placeholder="제목을 입력해주세요!" aria-describedby="titleHelp" required minlength="3" maxlength="20">
-      <small id="titleHelp" class="form-text text-muted">3자이상 20자이내로 입력해주세요</small>
-      <small class="invalid-feedback">제목을 입력해주세요!</small>
+             placeholder="제목을 입력해주세요!" aria-describedby="titleHelp" required minlength="3" maxlength="20" th:readonly="${param.isEmpty()}">
     </div>
 
     <div id="category-group" class="form-group">
       <label for="category">카테고리</label>
-      <input id="category" type="text" th:field="*{category}" class="form-control">
+      <input th:if="${param.isEmpty()}" id="category" type="text" th:field="*{category}" class="form-control" aria-describedby="categoryHelp" readonly>
+      <select th:if="${!param.isEmpty()}" th:field="*{category}" class="form-control" aria-describedby="categoryHelp">
+          <option value="">선택</option>
+          <option value="잡담">잡담</option>
+          <option value="질문">질문</option>
+          <option value="정보공유">정보공유</option>
+      </select>
     </div>
 
     <div id="content-group" class="form-group">
       <label for="content">꿈 내용</label>
       <textarea id="content" th:field="*{content}" class="form-control"
-                aria-describedby="contentHelp" required minlength="30" maxlength="200" rows="5"></textarea>
-      <small id="contentHelp" class="form-text text-muted">
-        30자 이상 200자 이내로 입력하세요
-      </small>
-      <small class="invalid-feedback">내용을 입력해주세요!</small>
+                aria-describedby="contentHelp" required minlength="30" maxlength="200" rows="5" th:readonly="${param.isEmpty()}"></textarea>
     </div>
 
     <div class="form-group">
       <a th:href="@{/}" class="btn btn-secondary float-left" >목록으로</a>
-      <button class="btn btn-primary float-right ml-1" type="submit" aria-describedby="submitHelp">수정하기</button>
-      <form th:action="@{'/posts/' + ${post.id}}" th:method="delete">
+      <a th:if="${param.isEmpty()}" th:href="@{'/posts/' + ${post.id}(edit)}" class="btn btn-primary float-right ml-1">수정하기</a>
+      <form th:if="${!param.isEmpty()}" th:action="@{'/posts/' + ${post.id}}" th:method="put">
+          <button class="btn btn-primary float-right ml-1" type="submit">수정완료</button>
+      </form>
+      <form th:if="${param.isEmpty()}" th:action="@{'/posts/' + ${post.id}}" th:method="delete">
           <button id="btn-delete" class="btn btn-danger float-right ml-1" type="submit">삭제하기</button>
       </form>
+      <a th:if="${!param.isEmpty()}" th:href="@{'/posts/' + ${post.id}}" class="btn btn-danger float-right ml-1"> 취소하기</a>
     </div>
   </form>
 

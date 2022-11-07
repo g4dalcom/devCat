@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -46,6 +47,15 @@ public class PostController {
         return "redirect:/";
     }
 
+    /* 게시글 수정하기 */
+    @PutMapping("posts/{post_id}")
+    public String updatePost(@PathVariable Long post_id, @ModelAttribute PostDto.Request request) {
+        postService.updatePost(post_id, request);
+
+        return "redirect:/";
+    }
+
+
     /* 게시글 삭제 */
     @DeleteMapping("/posts/{post_id}")
     public String deletePost(@PathVariable Long post_id) {
@@ -57,8 +67,8 @@ public class PostController {
 
     @PostConstruct
     public void init() {
-        postRepository.save(new Post(2L, "제목", "콘텐츠", "카테고리", 1));
-        postRepository.save(new Post(3L, "제목", "콘텐츠", "카테고리", 1));
-        postRepository.save(new Post(4L, "제목", "콘텐츠", "카테고리", 1));
+        postRepository.save(new Post(2L, "제목", "콘텐츠", "잡담", 1));
+        postRepository.save(new Post(3L, "제목", "콘텐츠", "질문", 1));
+        postRepository.save(new Post(4L, "제목", "콘텐츠", "정보공유", 1));
     }
 }

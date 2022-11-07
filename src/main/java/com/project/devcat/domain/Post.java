@@ -42,4 +42,10 @@ public class Post extends Timestamped {
 //    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    private List<PostImage> imageList;
 
+    public void update(PostDto.Request request) {
+        this.title = request.getTitle();
+        this.category = request.getCategory();
+        this.content = request.getContent();
+    }
+
 }
