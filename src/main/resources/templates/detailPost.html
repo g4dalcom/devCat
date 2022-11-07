@@ -42,6 +42,12 @@
       </select>
     </div>
 
+    <div id="upload-group" class="form-group">
+        <label th:if="${post.filename != null}" for="upload">이미지</label>
+        <img th:if="${post.filename != null}" th:src="@{${post.filepath}}" id="upload"
+                    aria-describedby="uploadHelp" alt="image">
+    </div>
+
     <div id="content-group" class="form-group">
       <label for="content">꿈 내용</label>
       <textarea id="content" th:field="*{content}" class="form-control"

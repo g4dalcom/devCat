@@ -3,6 +3,7 @@ package com.project.devcat.service;
 import com.project.devcat.domain.Member;
 import com.project.devcat.domain.MemberRoleEnum;
 import com.project.devcat.domain.Post;
+import com.project.devcat.domain.PostImage;
 import com.project.devcat.dto.PostDto;
 import com.project.devcat.repository.MemberRepository;
 import com.project.devcat.repository.PostImageRepository;
@@ -14,9 +15,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.PostConstruct;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.text.FieldPosition;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 @Slf4j
@@ -30,12 +36,23 @@ public class PostService {
 
 
     /* 게시글 등록 */
-    public ResponseEntity<PostDto.Response> createPost(PostDto.Request request) {
+    public ResponseEntity<PostDto.Response> createPost(PostDto.Request request, MultipartFile file) throws IOException {
+        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
+
+        UUID uuid = UUID.randomUUID();
+        String filename = uuid + "_" + file.getOriginalFilename();
+
+        File saveFile = new File(projectPath, filename);
+        file.transferTo(saveFile);
+
         Post post = Post.builder()
                 .title(request.getTitle())
                 .content(request.getContent())
                 .category(request.getCategory())
                 .views(request.getViews())
+                .filename(filename)
+                .filepath("/files/" + filename)
+//                .imageList(request.getImageList())
                 .build();
 
         postRepository.save(post);

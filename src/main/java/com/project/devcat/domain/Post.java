@@ -30,6 +30,10 @@ public class Post extends Timestamped {
     private String category;
 
     private int views;
+
+    private String filename;
+
+    private String filepath;
 //    private int commentCount;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
@@ -46,6 +50,8 @@ public class Post extends Timestamped {
         this.title = request.getTitle();
         this.category = request.getCategory();
         this.content = request.getContent();
+        this.filename = request.getFilename();
+        this.filepath = request.getFilepath();
     }
 
 }

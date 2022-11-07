@@ -1,12 +1,14 @@
 package com.project.devcat.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Getter
 @Entity
 public class PostImage {
@@ -17,7 +19,10 @@ public class PostImage {
     private Long id;
 
     @Column(nullable = false)
-    private String imageUrl;
+    private String filename;
+
+    @Column(nullable = false)
+    private String filepath;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")

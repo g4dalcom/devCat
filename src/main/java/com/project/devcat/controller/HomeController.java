@@ -11,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.Optional;
 
 
@@ -24,7 +22,7 @@ public class HomeController {
 
     /* 메인화면 */
     @GetMapping("/")
-    public String main(Model model, @PageableDefault(page = 0, size = 10, sort = "createdAt", direction = Sort.Direction.DESC)Pageable pageable) {
+    public String main(Model model, @PageableDefault(page = 0, size = 5, sort = "createdAt", direction = Sort.Direction.DESC)Pageable pageable) {
         model.addAttribute("posts", postRepository.findAll(pageable));
         model.addAttribute("sortProperty", pageable.getSort().toString().contains("DESC") ? "desc" : "asc");
         model.addAttribute("keyword", "");

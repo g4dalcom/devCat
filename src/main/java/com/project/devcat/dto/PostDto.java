@@ -4,7 +4,6 @@ import com.project.devcat.domain.Member;
 import com.project.devcat.domain.Post;
 import com.project.devcat.domain.PostImage;
 import lombok.*;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,6 +19,10 @@ public class PostDto {
         private String category;
 
         private int views;
+
+        private String filename;
+
+        private String filepath;
 //        private List<PostImage> imageList;
 
         public Post toEntity() {
@@ -28,6 +31,8 @@ public class PostDto {
                     .content(content)
                     .category(category)
                     .views(0)
+                    .filename(filename)
+                    .filepath(filepath)
 //                    .commentCount(0)
 //                    .imageList(imageList)
                     .build();
@@ -46,7 +51,9 @@ public class PostDto {
 
         private String nickname;
 
-        private List<PostImage> imageList;
+        private String filename;
+        private String filepath;
+//        private List<PostImage> imageList;
         private LocalDateTime createdAt;
         private LocalDateTime modifiedAt;
         private int views;
@@ -59,6 +66,8 @@ public class PostDto {
             this.content = post.getContent();
             this.category = post.getCategory();
             this.nickname = member.getNickname();
+            this.filename = post.getFilename();
+            this.filepath = post.getFilepath();
 //            this.imageList = post.getImageList();
             this.createdAt = post.getCreatedAt();
             this.modifiedAt = post.getModifiedAt();
