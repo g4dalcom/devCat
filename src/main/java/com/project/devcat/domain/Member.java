@@ -28,12 +28,12 @@ public class Member extends Timestamped {
     @Column(nullable = false)
     private String password;
 
-    @Column
-    @Enumerated
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private MemberRoleEnum role;
 
-//    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<Post> postList;
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Post> postList;
 //
 //    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    private List<Comment> commentList;

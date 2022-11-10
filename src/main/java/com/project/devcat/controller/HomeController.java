@@ -47,4 +47,10 @@ public class HomeController {
         model.addAttribute("post", new PostDto.Request());
         return "createPost";
     }
+
+    /* 로그인 페이지 */
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 }
