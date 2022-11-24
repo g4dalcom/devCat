@@ -1,6 +1,5 @@
 package com.project.devcat.service;
 
-
 import com.project.devcat.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -59,5 +58,35 @@ public class KakaoOauth2 {
         String accessToken = rjson.getString("access_token");
 
         return accessToken;
+    }
+
+    private MemberDto getUserInfoByToken(String accessToken) throws JSONException {
+        /* HttpHeader 오브젝트 생성 */
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + accessToken);
+        headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+
+        /* HttpHeader와 HttpBody를 하나의 오브젝트에 담기 */
+        RestTemplate rt = new RestTemplate();
+        HttpEntity<MultiValueMap<String, String>> kakaoProfileRequest = new HttpEntity<>(headers);
+
+        /**
+         * Http 요청하기
+         * Method : POST
+         * response 변수에 응답 받기
+         */
+        ResponseEntity<String> response = rt.exchange(
+                "https://kapi.kakao.com/v2/user/me",
+                HttpMethod.POST,
+                kakaoProfileRequest,
+                String.class
+        );
+
+        JSONObject body = new JSONObject(response.getBody());
+        Long id = body.getLong("id");
+        String email = body.getJSONObject("kakao_account").getString("email");
+        String nickname = body.getJSONObject("properties").getString("nickname");
+
+        return new MemberDto(id, email, nickname);
     }
 }
