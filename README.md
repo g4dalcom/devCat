@@ -8,6 +8,6 @@
  
 
 ### 📰 개요
-- 명칭 : DevCat Project
+- 프로젝트명 : DevCat Project
 - 개발인원 : 1명
 - 개발환경 : Java 11, Springboot 2.7.4, Spring JPA, OAuth2, Thymeleaf, H2, MySQL
