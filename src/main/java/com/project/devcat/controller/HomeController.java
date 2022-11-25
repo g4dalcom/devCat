@@ -2,8 +2,10 @@ package com.project.devcat.controller;
 
 import com.project.devcat.domain.Post;
 import com.project.devcat.dto.PostDto;
+import com.project.devcat.dto.SignupDto;
 import com.project.devcat.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -52,5 +54,13 @@ public class HomeController {
     @GetMapping("/login")
     public String login() {
         return "login";
+    }
+
+
+    /* 회원가입 페이지 */
+    @GetMapping("/signup")
+    public String signup(Model model) {
+        model.addAttribute("request", new SignupDto.request());
+        return "signup";
     }
 }

@@ -35,7 +35,7 @@ public class KakaoOauth2 {
 
         /* HTTP 바디 생성 */
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add("grant-type", "authorizaiton_code");
+        params.add("grant_type", "authorization_code");
         params.add("client_id", "3d2e797ae6e0606abe36357ca1c17721");
         params.add("redirect_uri", "http://localhost:8080/member/kakao/callback");
         params.add("code", authorizedCode);
@@ -85,8 +85,8 @@ public class KakaoOauth2 {
         JSONObject body = new JSONObject(response.getBody());
         Long id = body.getLong("id");
         String email = body.getJSONObject("kakao_account").getString("email");
-        String nickname = body.getJSONObject("properties").getString("nickname");
+//        String nickname = body.getJSONObject("properties").getString("nickname");
 
-        return new MemberDto(id, email, nickname);
+        return new MemberDto(id, email, "kakaoUser");
     }
 }

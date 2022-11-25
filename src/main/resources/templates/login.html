@@ -37,11 +37,11 @@
     <div class="form-group">
       <button class="btn btn-success btn-block" type="submit"
               aria-describedby="submitHelp">로그인</button>
-      <button id="login-kakao-btn" class="btn btn-warning btn-block" type="button" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=eeb509c49af2fd444e5c2af0a17812b5&redirect_uri=http://seongbindb.shop/login/kakao/callback&response_type=code'">
+      <button id="login-kakao-btn" class="btn btn-warning btn-block" type="button" onclick="location.href='https://kauth.kakao.com/oauth/authorize?client_id=3d2e797ae6e0606abe36357ca1c17721&redirect_uri=http://localhost:8080/member/kakao/callback&response_type=code'">
         카카오로 로그인하기
       </button>
       <small id="submitHelp" class="form-text text-muted">
-        드림리멤버 처음 오신거라면 <a href="#" th:href="@{/signup}">계정을 먼저 만드세요.</a>
+        아직 계정이 없으시다면 <a href="#" th:href="@{/signup}">계정을 먼저 만드세요.</a>
       </small>
     </div>
   </form>

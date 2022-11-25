@@ -1,15 +1,15 @@
 package com.project.devcat.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.stereotype.Service;
+
 import javax.persistence.*;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Setter
 @Getter
 @Entity
 public class Member extends Timestamped {
@@ -27,6 +27,9 @@ public class Member extends Timestamped {
 
     @Column(nullable = false)
     private String password;
+
+    @Column
+    private Long kakaoId;
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)

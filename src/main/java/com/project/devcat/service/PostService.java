@@ -83,7 +83,7 @@ public class PostService {
      */
     @PostConstruct
     public void init() {
-        memberRepository.save(new Member(1L, "멤버1", "닉네임", "1234", MemberRoleEnum.MEMBER));
+        memberRepository.save(new Member(1L, "멤버1", "닉네임", "1234", null, MemberRoleEnum.MEMBER, null));
     }
 
 

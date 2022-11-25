@@ -73,15 +73,15 @@ public class PostController {
 
     @PostConstruct
     public void init() {
-        postRepository.save(new Post(2L, "제목", "콘텐츠", "잡담", 1, null, null));
-        postRepository.save(new Post(3L, "제목", "콘텐츠", "질문", 1, null, null));
-        postRepository.save(new Post(4L, "제목", "콘텐츠", "정보공유", 1, null, null));
-        postRepository.save(new Post(5L, "제목", "콘텐츠", "정보공유", 1, null, null));
-        postRepository.save(new Post(6L, "제목", "콘텐츠", "정보공유", 1, null, null));
-        postRepository.save(new Post(7L, "제목", "콘텐츠", "정보공유", 1, null, null));
-        postRepository.save(new Post(8L, "제목", "콘텐츠", "정보공유", 1, null, null));
-        postRepository.save(new Post(9L, "제목", "콘텐츠", "정보공유", 1, null, null));
-        postRepository.save(new Post(10L, "제목", "콘텐츠", "정보공유", 1, null, null));
-        postRepository.save(new Post(11L, "제목", "콘텐츠", "정보공유", 1, null, null));
+        postRepository.save(new Post(2L, "제목", "콘텐츠", "잡담", 1, null, null, null));
+        postRepository.save(new Post(3L, "제목", "콘텐츠", "질문", 1, null, null, null));
+        postRepository.save(new Post(4L, "제목", "콘텐츠", "정보공유", 1, null, null, null));
+        postRepository.save(new Post(5L, "제목", "콘텐츠", "정보공유", 1, null, null, null));
+        postRepository.save(new Post(6L, "제목", "콘텐츠", "정보공유", 1, null, null, null));
+        postRepository.save(new Post(7L, "제목", "콘텐츠", "정보공유", 1, null, null, null));
+        postRepository.save(new Post(8L, "제목", "콘텐츠", "정보공유", 1, null, null, null));
+        postRepository.save(new Post(9L, "제목", "콘텐츠", "정보공유", 1, null, null, null));
+        postRepository.save(new Post(10L, "제목", "콘텐츠", "정보공유", 1, null, null, null));
+        postRepository.save(new Post(11L, "제목", "콘텐츠", "정보공유", 1, null, null, null));
     }
 }

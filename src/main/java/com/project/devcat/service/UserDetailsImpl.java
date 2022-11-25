@@ -27,7 +27,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return member.getNickname();
     }
 
     /* 계정 만료 여부 (true : 만료되지 않음) */
